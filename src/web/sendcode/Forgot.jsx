@@ -25,7 +25,7 @@ export default function Forgot() {
         progress: undefined,
         theme:"light",
         });
-        navigate('/')
+        navigate('/login')
     }
   }
   const formik=useFormik({
