@@ -69,7 +69,7 @@ export default function Navbar() {
                 </Link>
               </li>
               }
-              <div className='mt-2'>{userToken!=null && data.count}</div>
+              <div className='mt-2'>{userToken!==null && data.count}</div>
 
             </ul>
             <ul className="navbar-nav">

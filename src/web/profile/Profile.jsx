@@ -4,8 +4,6 @@ import './profile.css';
 
 export default function Profile() {
   const { userData } = useContext(userContext);
-  console.log(userData);
-
   return (
     <div className="profile">
       {userData ? (
