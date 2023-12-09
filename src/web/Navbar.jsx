@@ -64,12 +64,13 @@ export default function Navbar() {
               </li>
               {userToken &&<li className="nav-item">
                 <Link className="nav-link" to="/cart">
-                  {data.count}
+                  
                   <span className='ps-1'>cart</span>
                 </Link>
               </li>
               }
-              
+              <div className='mt-2'>{userToken!=null && data.count}</div>
+
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item dropdown">
