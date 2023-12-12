@@ -55,7 +55,34 @@ export function CartConterxtProvider({children}){
     );
     return data;
   };
-  return <CartConterxt.Provider value={{addToCartContext,getCartContext,removeCartContext,clearCartContext}}  >
+  const decreaseCartContext = async (productId) => {
+    const token = localStorage.getItem('userToken');
+    const { data } = await axios.patch(
+      `${import.meta.env.VITE_URL_LINK}/cart/decraseQuantity`,
+      {productId},
+      {
+        headers: {
+          Authorization: `Tariq__${token}`,
+        },
+      }
+    );
+    return data;
+  };
+  const increaseCartContext = async (productId) => {
+    const token = localStorage.getItem('userToken');
+    const { data } = await axios.patch(
+      `${import.meta.env.VITE_URL_LINK}/cart/incraseQuantity`,
+      {productId},
+      {
+        headers: {
+          Authorization: `Tariq__${token}`,
+        },
+      }
+    );
+
+    return data;
+  };
+  return <CartConterxt.Provider value={{addToCartContext,getCartContext,removeCartContext,clearCartContext,decreaseCartContext,increaseCartContext}}  >
     {children}
   </CartConterxt.Provider> ;
 }  
