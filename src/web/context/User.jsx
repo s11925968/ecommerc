@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 export let userContext=createContext();
 
 export function UserContextProvider({children}){
+  let [lodaing,setLodaing]=useState(true);
   const [userToken,setUserToken] = useState(null);
   const saveCurrentUser = () => {
     const token = localStorage.getItem("userToken");
@@ -23,6 +24,8 @@ export function UserContextProvider({children}){
           },
         });
         setUserData(data.user);
+        setLodaing(false);
+
   }
   useEffect(()=>{
     if(localStorage.getItem("userToken")){
@@ -32,7 +35,7 @@ export function UserContextProvider({children}){
   useEffect(()=>{
     getUserData();
   },[])
-  return <userContext.Provider value={{userToken,setUserToken,userData,setUserData}}>
+  return <userContext.Provider value={{userToken,setUserToken,userData,setUserData,lodaing}}>
     {children}
   </userContext.Provider>
 

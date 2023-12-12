@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom'
 export default function Cart() {
 
-  const {getCartContext,removeCartContext}=useContext(CartConterxt);
+  const {getCartContext,removeCartContext,clearCartContext}=useContext(CartConterxt);
   const getCart=async()=>{
     const res=await getCartContext();
     return res;
@@ -15,6 +15,10 @@ export default function Cart() {
   const removeCart=async(productId)=>{
     const res=await removeCartContext(productId);
     return res;
+  }
+  const clearCart=async()=>{
+    const res=await clearCartContext();
+    console.log(res);
   }
   const {data,isLoading}=useQuery("getCart",getCart);
   if(isLoading){
@@ -107,10 +111,13 @@ export default function Cart() {
               <div className="price">{product.details.price}$</div>
               <div className="subtotal">$38.00</div>
               </div>
+              
               )
             ):"<h2>cart is empty<h2/>"
-            }
+            } 
+              
           </div>
+          
           <div className="cart-summary">
             <h2>Cart summary</h2>
             <div className="summery-items">
@@ -145,6 +152,9 @@ export default function Cart() {
               </div>
             </div>
           </div>
+          <div>
+          <a href="#" onClick={()=>clearCart()} className='btn btn-danger px-4'>cleart_all</a>
+          </div>
         </div>
         <div className="row">
           <h2>Have a coupon ?</h2>
@@ -166,6 +176,7 @@ export default function Cart() {
             <button>Apply</button>
           </div>
         </div>
+
       </div>
     </div>
   </div>

@@ -16,6 +16,9 @@ import ProductRoute from "./web/prodtuctRoute/ProductRoute.jsx";
 import Profile from "./web/profile/Profile.jsx";
 import Sendcode from "./web/sendcode/Sendcode.jsx";
 import Forgot from "./web/sendcode/Forgot.jsx";
+import Userinfo from './web/profile/Userinfo.jsx'
+import Usercontact from './web/profile/Usercotact.jsx'
+
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -44,7 +47,22 @@ export default function App() {
         },
         {
           path:'profile',
-          element:<Profile />
+          
+          element:
+          <ProductRoute>
+            <Profile />
+          </ProductRoute>,
+          children:[
+            {
+              path:'',
+              element:<Userinfo />,
+            },
+            {
+              path:'contact',
+              element:<Usercontact />,
+
+            }
+          ]
         },
         {
           path:'auth/sendcode',

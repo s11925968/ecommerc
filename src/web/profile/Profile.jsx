@@ -1,20 +1,27 @@
 import React, { useContext } from 'react';
 import { userContext } from '../context/User';
-import './profile.css';
+import style from './Profile.module.css'
+import Loader from '../../shared/Loader';
+import { Link, Outlet } from 'react-router-dom';
 
 export default function Profile() {
-  const { userData } = useContext(userContext);
+  
+  const { userData ,lodaing} = useContext(userContext);
+  console.log(userData);
+  if(lodaing){
+    return <Loader />;
+  }
   return (
-    <div className="profile">
-      {userData ? (
-        <div className='text-center'>
-          <h2>{userData.userName}</h2>
-        <h3>{userData.email}</h3>
-        </div>
-        
-      ) : (
-        <p>No data available</p>
-      )}
-    </div>
+    <aside className={`${style.profile}`}>
+      <div className={`${style.profileLinks}`}>
+        <nav>
+          <Link to="">info</Link>
+          <Link to="contact">contact</Link>
+        </nav>
+      </div>
+      <div className={`${style.userData}`}>
+        <Outlet />
+      </div>
+    </aside>
   );
 }

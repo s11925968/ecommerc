@@ -42,7 +42,20 @@ export function CartConterxtProvider({children}){
       });
       return data;
   }
-  return <CartConterxt.Provider value={{addToCartContext,getCartContext,removeCartContext}}  >
+  const clearCartContext = async () => {
+    const token = localStorage.getItem('userToken');
+    const { data } = await axios.patch(
+      `${import.meta.env.VITE_URL_LINK}/cart/clear`,
+      {},
+      {
+        headers: {
+          Authorization: `Tariq__${token}`,
+        },
+      }
+    );
+    return data;
+  };
+  return <CartConterxt.Provider value={{addToCartContext,getCartContext,removeCartContext,clearCartContext}}  >
     {children}
   </CartConterxt.Provider> ;
 }  

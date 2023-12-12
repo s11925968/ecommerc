@@ -1,0 +1,31 @@
+.profile{
+  background-color: white;
+  display: flex;
+  gap:10px;
+  height: 80vh;
+}
+.profileLinks{
+  background-color: #4b5357;
+  width:350px ;
+}
+.profileLinks nav{
+color: white;
+display: flex;
+flex-direction: column;
+gap: 30px;
+
+}
+.profileLinks nav a{
+  text-decoration: none;
+  color:aliceblue;
+  text-align: center;
+}
+.userData{
+  width: 400px;
+flex-grow: 1;
+}
+.userData img{
+  width: 40%;
+  height: 40%;
+  
+}
