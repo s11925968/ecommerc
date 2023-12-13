@@ -44,7 +44,24 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon" />
           </button>
-        
+          {userToken && data.products && data.products.length > 0 ? (
+            <div>
+              {data.products.map((product) => {
+                count += product.quantity;
+                return (
+                  <div className="mt-2" key={product._id}>
+                    {/* Render your product details here */}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="mt-2">
+              {userToken
+                ? "No products available"
+                : "Please log in to see products"}
+            </div>
+          )}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
