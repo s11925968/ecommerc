@@ -44,13 +44,7 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          {
-                data.products.length?(data.products.map((produc)=>
-                <div className='mt-2' key={produc._id}>
-                  {count +=(produc.quantity)}
-                </div>
-                )):0
-          }
+          
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
