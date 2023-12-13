@@ -226,7 +226,7 @@ export default function Cart() {
                 <span>$1345.00</span>
               </div>
               <div className="checkout">
-                <Link to="/order">Chekout</Link>
+                <Link to="/order">create order</Link>
               </div>
             </div>
           </div>
