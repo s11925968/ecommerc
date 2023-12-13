@@ -7,7 +7,6 @@ import { CartConterxt } from './context/Cart';
 
 export default function Navbar() {
   let {userToken,setUserToken,userData,setUserData}=useContext(userContext);
-  let [count,setcount]=useState(0);
   const navigate=useNavigate();
   const logout=()=>{
     localStorage.removeItem("userToken");
@@ -20,14 +19,30 @@ export default function Navbar() {
     const res=await getCartContext();
     return res;
   }
-  const {data,isLoading}=useQuery("getCart",getCart);
+    const {data,isLoading}=useQuery("getCart",getCart);
+
+    const [count, setCount] = useState(0);
+
+    const getCount=()=>{
+      if (data && data.products && userToken) {
+        let totalCount = 0;
+        data.products.forEach((product) => {
+          totalCount += product.quantity;
+        });
+        setCount(totalCount);
+      }
+    }
+    useEffect(() => {
+      getCount();
+    }, [data, userToken]);
   if(isLoading){
     return <Loader />
   }
   console.log(data);
   return (
+
     <div>
-      {" "}
+      
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container">
           <a className="navbar-brand" href="#">
@@ -44,7 +59,7 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon" />
           </button>
-        
+          
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -64,14 +79,15 @@ export default function Navbar() {
                   Products
                 </a>
               </li>
-              {userToken && (
-                <li className="nav-item">
-                  <Link className="nav-link" to="/cart">
-                    <span className="ps-1">cart</span>
-                  </Link>
-                </li>
-              )}
-              <div className="mt-2">{count}</div>
+              {userToken &&<li className="nav-item">
+                <Link className="nav-link" to="/cart">
+                  
+                  <span className='ps-1'>cart</span>
+                </Link>
+              </li>
+              
+              }
+              <div className='mt-2'>{count}</div>
               {/* <div className='mt-2'>{userToken !== null && data && data.count}</div> */}
             </ul>
             <ul className="navbar-nav">
@@ -83,43 +99,45 @@ export default function Navbar() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {userData != null ? userData.userName : "account"}
-                </a>
+                  {userData!=null?userData.userName:'account'} 
+
+                </a>                
                 <ul className="dropdown-menu ">
-                  {!userToken ? (
-                    <>
-                      <li>
-                        <Link className="dropdown-item" to="/register">
-                          register
-                        </Link>
-                      </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li>
-                        <Link className="dropdown-item" to="/login">
-                          login
-                        </Link>
-                      </li>
-                    </>
-                  ) : (
-                    <>
-                      <li>
-                        <Link className="dropdown-item" to="/profile">
-                          profile
-                        </Link>
-                      </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li>
-                        <Link className="dropdown-item" onClick={logout}>
-                          logout
-                        </Link>
-                      </li>
-                    </>
-                  )}
+                  {!userToken?
+                  <>
+                    <li>
+                    <Link className="dropdown-item" to="/register">
+                      register
+                    </Link>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/login">
+                      login
+                    </Link>
+                  </li>
+                  </>
+                  :
+                  <>
+                    <li>
+                    <Link className="dropdown-item" to="/profile">
+                      profile
+                    </Link>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" onClick={logout}>
+                      logout
+                    </Link>
+                  </li>
+                  </>
+                  }
                 </ul>
+                
               </li>
             </ul>
           </div>
