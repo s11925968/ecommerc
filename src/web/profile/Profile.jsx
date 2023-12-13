@@ -7,7 +7,6 @@ import { Link, Outlet } from 'react-router-dom';
 export default function Profile() {
   
   const { userData ,lodaing} = useContext(userContext);
-  console.log(userData);
   if(lodaing){
     return <Loader />;
   }

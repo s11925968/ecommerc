@@ -19,7 +19,6 @@ export default function Cart() {
 
   const getCart = async () => {
     const res = await getCartContext();
-    console.log(res);
     return res;
   };
 
@@ -70,7 +69,6 @@ export default function Cart() {
         theme: "light",
         });
       }
-    console.log(res);
   };
 
   const clearCart = async () => {

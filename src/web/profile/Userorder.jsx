@@ -16,7 +16,6 @@ export default function Userorder() {
     return data.orders;
   }
   const {data,isLoading}=useQuery('getOrder',getorder);
-  console.log(data);
   if(isLoading){
     return <Loader />;
   }

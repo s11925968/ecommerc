@@ -35,7 +35,6 @@ export default function Createorder() {
         theme: "light",
         });
     }
-    console.log(data);  
   }
   const formik=useFormik({
     initialValues,
