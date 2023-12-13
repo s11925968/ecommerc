@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { CartConterxt } from '../context/Cart';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Cart() {
   let [count,setCount]=useState(0);
@@ -24,25 +25,68 @@ export default function Cart() {
 
   const removeCart = async (productId) => {
     const res = await removeCartContext(productId);
-    console.log(res);
+    if(res.message=="success"){
+      toast.success('remove success', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      }
     return res;
   };
 
   const decreaseCart = async (productId) => {
     const res = await decreaseCartContext(productId);
-
-
-
-    console.log(res);
+    if(res.message=="success"){
+      toast.success('decrease seuccess', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      }
   };
 
   const increaseCart = async (productId) => {
     const res = await increaseCartContext(productId);
+    if(res.message=="success"){
+      toast.success('increase success', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      }
     console.log(res);
   };
 
   const clearCart = async () => {
     const res = await clearCartContext();
+    if(res.message=="success"){
+      toast.success('clear all cart', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      }
   };
 
   const { data, isLoading } = useQuery('getCart', getCart);
@@ -142,7 +186,7 @@ export default function Cart() {
                       </button>
                     </div>
                     <div className="price">
-                      <h2>${product.details.price * product.quantity}</h2>
+                      <h2>${product.details.price}</h2>
                     </div>
                     <div className="subtotal">
                       ${product.details.price * product.quantity}
@@ -155,9 +199,39 @@ export default function Cart() {
             </div>
 
             <div className="cart-summary">
-              <h2>Cart summary</h2>
-              <div className="summery-items">{/* ... */}</div>
+            <h2>Cart summary</h2>
+            <div className="summery-items">
+              <div className="summary-item">
+                <div className="form-group">
+                  <input type="radio" /> <label>Free shipping</label>
+                </div>
+                <span>$0.00</span>
+              </div>
+              <div className="summary-item">
+                <div className="form-group">
+                  <input type="radio" /> <label>Express shipping</label>
+                </div>
+                <span>+$15.00</span>
+              </div>
+              <div className="summary-item">
+                <div className="form-group">
+                  <input type="radio" /> <label>Pick Up</label>
+                </div>
+                <span>%21.00</span>
+              </div>
+              <div className="summary-footer">
+                <label>Subtotal</label>
+                <span>$1234.00</span>
+              </div>
+              <div className="summary-footer">
+                <label className="total">Total</label>
+                <span>$1345.00</span>
+              </div>
+              <div className="checkout">
+                <Link to="/order">Chekout</Link>
+              </div>
             </div>
+          </div>
 
             <div>
               <a

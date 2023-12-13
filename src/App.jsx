@@ -18,6 +18,8 @@ import Sendcode from "./web/sendcode/Sendcode.jsx";
 import Forgot from "./web/sendcode/Forgot.jsx";
 import Userinfo from './web/profile/Userinfo.jsx'
 import Usercontact from './web/profile/Usercotact.jsx'
+import Createorder from "./web/order/createorder/Createorder.jsx";
+import Userorder from "./web/profile/Userorder.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -60,9 +62,16 @@ export default function App() {
             {
               path:'contact',
               element:<Usercontact />,
-
-            }
+            },
+            {
+              path:'Userorder',
+              element:<Userorder />,
+            },
           ]
+        },
+        {
+          path:'order',
+          element:<Createorder />
         },
         {
           path:'auth/sendcode',
