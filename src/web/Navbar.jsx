@@ -44,7 +44,19 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          
+          {userToken && data.products && data.products.length > 0 ? (
+            data.products.map((product) => (
+              <div className="mt-2" key={product._id}>
+                {(count += product.quantity)}
+              </div>
+            ))
+          ) : (
+            <div className="mt-2">
+              {userToken
+                ? "No products available"
+                : "Please log in to see products"}
+            </div>
+          )}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -64,15 +76,14 @@ export default function Navbar() {
                   Products
                 </a>
               </li>
-              {userToken &&<li className="nav-item">
-                <Link className="nav-link" to="/cart">
-                  
-                  <span className='ps-1'>cart</span>
-                </Link>
-              </li>
-              
-              }
-              <div className='mt-2'>{count}</div>
+              {userToken && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/cart">
+                    <span className="ps-1">cart</span>
+                  </Link>
+                </li>
+              )}
+              <div className="mt-2">{count}</div>
               {/* <div className='mt-2'>{userToken !== null && data && data.count}</div> */}
             </ul>
             <ul className="navbar-nav">
@@ -84,45 +95,43 @@ export default function Navbar() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {userData!=null?userData.userName:'account'} 
-
-                </a>                
+                  {userData != null ? userData.userName : "account"}
+                </a>
                 <ul className="dropdown-menu ">
-                  {!userToken?
-                  <>
-                    <li>
-                    <Link className="dropdown-item" to="/register">
-                      register
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/login">
-                      login
-                    </Link>
-                  </li>
-                  </>
-                  :
-                  <>
-                    <li>
-                    <Link className="dropdown-item" to="/profile">
-                      profile
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" onClick={logout}>
-                      logout
-                    </Link>
-                  </li>
-                  </>
-                  }
+                  {!userToken ? (
+                    <>
+                      <li>
+                        <Link className="dropdown-item" to="/register">
+                          register
+                        </Link>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" to="/login">
+                          login
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <Link className="dropdown-item" to="/profile">
+                          profile
+                        </Link>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" onClick={logout}>
+                          logout
+                        </Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
-                
               </li>
             </ul>
           </div>
