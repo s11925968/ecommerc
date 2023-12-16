@@ -20,22 +20,34 @@ export default function Userorder() {
     return <Loader />;
   }
   return (
-    <div className='row'>
+    <div className='table-responsive'>
+  <table className='table table-bordered table-striped'>
+    <thead>
+      <tr>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Coupon Name</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
       {data.length ? (
         data.map((order) => (
-          <div className="col-md-4  " key={order._id}>
-            <div className='ms-4 my-4 bg-primary'>
-            <h2>Address:{order.address}</h2>
-            <h3>Phone:{order.phoneNumber}</h3>
-            <h3>{order.couponName}</h3>
-            <h3>TotalPrice:{order.finalPrice}</h3>
-            </div>
-            
-          </div>
+          <tr key={order._id}>
+            <td>{order.address}</td>
+            <td>{order.phoneNumber}</td>
+            <td>{order.couponName}</td>
+            <td>{order.finalPrice}</td>
+          </tr>
         ))
       ) : (
-        'No data available'
+        <tr>
+          <td colSpan="4">No data available</td>
+        </tr>
       )}
-    </div>
+    </tbody>
+  </table>
+</div>
+
   );
 }

@@ -20,6 +20,7 @@ import Userinfo from './web/profile/Userinfo.jsx'
 import Usercontact from './web/profile/Usercotact.jsx'
 import Createorder from "./web/order/createorder/Createorder.jsx";
 import Userorder from "./web/profile/Userorder.jsx";
+import Products from "./web/products/displayProducts/Products.jsx";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -84,6 +85,10 @@ export default function App() {
         {
           path: "categories",
           element: <Categories />,
+        },
+        {
+          path:'get/products',
+          element:<Products/>
         },
         {
           path: "/products/category/:_id",

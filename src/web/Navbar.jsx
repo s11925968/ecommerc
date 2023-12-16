@@ -38,7 +38,6 @@ export default function Navbar() {
   if(isLoading){
     return <Loader />
   }
-  console.log(data);
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -73,9 +72,9 @@ export default function Navbar() {
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/get/products">
                   Products
-                </a>
+                </Link>
               </li>
               {userToken &&<li className="nav-item">
                 <Link className="nav-link" to="/cart">

@@ -37,7 +37,6 @@ export default function Home() {
         <div className="row">
           <div className="col-md-3 services-image">
             <img src="/gategories/shopping-bag.png" />
-
             <h4 className="py-3">Guided Tours</h4>
             <p>
               sunt qui repellat saepe quo velit aperiam id aliquam placeat.

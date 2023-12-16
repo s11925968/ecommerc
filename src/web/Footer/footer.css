@@ -1,8 +1,5 @@
 .footers{
-  background-color: #4b5357;
-}
-.footers .images img{
-  width: 50%;
+  background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
 }
 .logo{
   width: 20%!important;
@@ -11,13 +8,4 @@
   :root{
     font-size: 12px;
   }
-  .footers .images img{
-    width: 40%;
-    margin-top: 10px !important;
- 
-  }
-  .footers{
-    margin-top: 15px !important;
-  }
-  
 }

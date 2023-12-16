@@ -9,6 +9,12 @@
   -ms-border-radius:100%;
   -o-border-radius:100%;
 }
+.Categories{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  
+}
 .swiper{
   padding: 50px;
 }

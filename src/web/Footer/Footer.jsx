@@ -3,7 +3,7 @@ import './footer.css';
 
 export default function Footer() {
   return (
-    <div className='mt-5'>
+    <div className='bg-body-tertiary'>
       <footer className="footers" id="hire-me">
         <div className="py-4">
           <div className="row align-items-center pb-4">

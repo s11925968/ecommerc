@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from '../../shared/Loader.jsx';
 import './cart.css';
 import { useContext } from 'react';
@@ -9,17 +9,20 @@ import { toast } from 'react-toastify';
 
 export default function Cart() {
   let [count,setCount]=useState(0);
+  let [carts,setGart]=useState("");
   const {
     getCartContext,
     removeCartContext,
     clearCartContext,
     increaseCartContext,
     decreaseCartContext,
+    loader
   } = useContext(CartConterxt);
 
   const getCart = async () => {
     const res = await getCartContext();
-    return res;
+    setGart(res);
+   // return res;
   };
 
   const removeCart = async (productId) => {
@@ -87,10 +90,12 @@ export default function Cart() {
       }
   };
 
-  const { data, isLoading } = useQuery('getCart', getCart);
+  //const { data, isLoading } = useQuery('getCart', getCart);
+  useEffect(()=>{
+    getCart();
+  },[])
 
-
-  if (isLoading) {
+  if (loader) {
     return <Loader />;
   }
 
@@ -114,8 +119,8 @@ export default function Cart() {
                   <h2>Subtotal</h2>
                 </div>
               </div>
-              {data?.products ? (
-                data.products.map((product) => (
+              {carts?.products ? (
+                carts.products.map((product) => (
                   <div className="item" key={product._id}>
                     <div className="product-info">
                       <img
@@ -268,4 +273,3 @@ export default function Cart() {
   );
 }
 
- 

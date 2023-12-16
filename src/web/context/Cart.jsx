@@ -4,6 +4,7 @@ import axios from "axios";
 export const CartConterxt=createContext(null);
 
 export function CartConterxtProvider({children}){
+  let [loader,setLoader]=useState(true);
   const  addToCartContext=async (productId)=>{
       const token=localStorage.getItem('userToken');
       const { data } = await axios.post(
@@ -19,6 +20,7 @@ export function CartConterxtProvider({children}){
         return data;
   }
   const getCartContext=async()=>{
+      setLoader(true);
       const token=localStorage.getItem('userToken');
       const {data}=await axios.get(`${import.meta.env.VITE_URL_LINK}/cart`,
       {
@@ -26,10 +28,13 @@ export function CartConterxtProvider({children}){
           Authorization:`Tariq__${token}`,
         }
       });
+      setLoader(false)
       return data;
       
   }
   const removeCartContext=async (productId)=>{
+    setLoader(true);
+
       const token=localStorage.getItem('userToken');
       const {data}=await axios.patch(`${import.meta.env.VITE_URL_LINK}/cart/removeItem`,
       {
@@ -40,9 +45,12 @@ export function CartConterxtProvider({children}){
           Authorization:`Tariq__${token}`,
         }
       });
+      setLoader(false)
       return data;
   }
   const clearCartContext = async () => {
+    setLoader(true);
+
     const token = localStorage.getItem('userToken');
     const { data } = await axios.patch(
       `${import.meta.env.VITE_URL_LINK}/cart/clear`,
@@ -56,6 +64,8 @@ export function CartConterxtProvider({children}){
     return data;
   };
   const decreaseCartContext = async (productId) => {
+    setLoader(true);
+
     const token = localStorage.getItem('userToken');
     const { data } = await axios.patch(
       `${import.meta.env.VITE_URL_LINK}/cart/decraseQuantity`,
@@ -66,9 +76,12 @@ export function CartConterxtProvider({children}){
         },
       }
     );
+    setLoader(false)
     return data;
   };
   const increaseCartContext = async (productId) => {
+    setLoader(true);
+
     const token = localStorage.getItem('userToken');
     const { data } = await axios.patch(
       `${import.meta.env.VITE_URL_LINK}/cart/incraseQuantity`,
@@ -79,10 +92,10 @@ export function CartConterxtProvider({children}){
         },
       }
     );
-
+    setLoader(false)
     return data;
   };
-  return <CartConterxt.Provider value={{addToCartContext,getCartContext,removeCartContext,clearCartContext,decreaseCartContext,increaseCartContext}}  >
+  return <CartConterxt.Provider value={{addToCartContext,getCartContext,removeCartContext,clearCartContext,decreaseCartContext,increaseCartContext,loader}}  >
     {children}
   </CartConterxt.Provider> ;
 }  
