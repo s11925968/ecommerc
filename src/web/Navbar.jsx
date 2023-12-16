@@ -40,9 +40,7 @@ export default function Navbar() {
   }
   console.log(data);
   return (
-
     <div>
-      
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container">
           <a className="navbar-brand" href="#">
@@ -100,7 +98,6 @@ export default function Navbar() {
                   aria-expanded="false"
                 >
                   {userData!=null?userData.userName:'account'} 
-
                 </a>                
                 <ul className="dropdown-menu ">
                   {!userToken?
