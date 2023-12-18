@@ -10,3 +10,7 @@ export const registerOrder=yup.object({
   address:yup.string().required("address is required").min(3,"must be at least 3 characters").max(30,"must be at least 30 characters"),
   phone:yup.string().required("phone is required"),
 })
+
+export const registerReview=yup.object({
+  rating:yup.string().required("rating is required").min(1,"must be at least 1 characters").max(5,"must be at least 5 characters"),
+})

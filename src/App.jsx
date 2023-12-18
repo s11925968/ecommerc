@@ -21,7 +21,7 @@ import Usercontact from './web/profile/Usercotact.jsx'
 import Createorder from "./web/order/createorder/Createorder.jsx";
 import Userorder from "./web/profile/Userorder.jsx";
 import Products from "./web/products/displayProducts/Products.jsx";
-
+import CreateRivews from "./web/createRivews/CreateRivews.jsx"
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -97,6 +97,10 @@ export default function App() {
         {
           path: "/product/:_id",
           element: <Product />,
+        },
+        {
+          path:'/products/:_id/review',
+          element:<CreateRivews />
         },
         {
           path: "*",

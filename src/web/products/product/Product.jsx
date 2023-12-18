@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Loader from '../../../shared/Loader';
 import './Product.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -38,8 +38,11 @@ export default function Product() {
               <img src={sub.secure_url} className="img-fluid" alt={data.name} />
             </div>
           ))}
+        <Link to={`/products/${data._id}/review`} className='text-center btn btn-danger'>Create review</Link>
+
         </div>
       </div>
+      
       <div className="row">
         <div className="col">
           <h1>Reviews</h1>
@@ -54,8 +57,11 @@ export default function Product() {
                       )}
             </div>
           ))}
+          
         </div>
       </div>
+      
+
     </div>
   );
 }
