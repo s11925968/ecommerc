@@ -1,0 +1,15 @@
+.Category-subimages img{
+  width: 50%;
+  height: 50%;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+
+}
+.Category-subimages{
+  text-align: center;
+}
+.Category{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}

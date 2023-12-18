@@ -25,7 +25,6 @@ export function UserContextProvider({children}){
         });
         setUserData(data.user);
         setLodaing(false);
-
   }
   useEffect(()=>{
     if(localStorage.getItem("userToken")){

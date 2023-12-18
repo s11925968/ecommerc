@@ -28,6 +28,8 @@ export default function Userorder() {
         <th>Phone</th>
         <th>Coupon Name</th>
         <th>Total Price</th>
+        <th>status</th>
+
       </tr>
     </thead>
     <tbody>
@@ -38,6 +40,7 @@ export default function Userorder() {
             <td>{order.phoneNumber}</td>
             <td>{order.couponName}</td>
             <td>{order.finalPrice}</td>
+            <td>{order.status}</td>
           </tr>
         ))
       ) : (
