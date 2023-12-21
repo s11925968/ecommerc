@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Loader from '../../../shared/Loader';
-import './productsdisplay.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Loader from "../../../shared/Loader";
+import "./productsdisplay.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 export default function Products() {
   const [data, setData] = useState(null);
@@ -16,26 +16,30 @@ export default function Products() {
       setIsLoading(true);
 
       const params = new URLSearchParams();
-      params.append('page', current);
+      params.append("page", current);
 
-      const response = await axios.get(`${import.meta.env.VITE_URL_LINK}/products?${params.toString()}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_URL_LINK}/products?${params.toString()}`
+      );
       setData(response.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     } finally {
       setIsLoading(false);
     }
   };
-
+  console.log(data);
   const handlePageClick = (pageNumber) => {
     setCurrent(pageNumber + 1);
-    setSelectedProduct(null); 
+    setSelectedProduct(null);
   };
 
   const handleProductClick = (productId) => {
-    setSelectedProduct((prevSelectedProduct) => (
-      prevSelectedProduct && prevSelectedProduct._id === productId ? null : data.products.find((product) => product._id === productId)
-    ));
+    setSelectedProduct((prevSelectedProduct) =>
+      prevSelectedProduct && prevSelectedProduct._id === productId
+        ? null
+        : data.products.find((product) => product._id === productId)
+    );
   };
 
   useEffect(() => {
@@ -60,6 +64,18 @@ export default function Products() {
                 <img src={product.mainImage.secure_url} alt={product.name} />
               </div>
               <h2>{product.name}</h2>
+              <h2>
+                {" "}
+                {Array.from({ length: product.avgRating }).map(
+                  (_, starIndex) => (
+                    <FontAwesomeIcon
+                      key={starIndex}
+                      icon={faStar}
+                      className=""
+                    />
+                  )
+                )}
+              </h2>
               <a href="#">Details</a>
               {selectedProduct && selectedProduct._id === product._id && (
                 <div>
@@ -71,7 +87,11 @@ export default function Products() {
                       <h2>{review.comment}</h2>
                       {Array.from({ length: review.rating }).map(
                         (_, starIndex) => (
-                          <FontAwesomeIcon key={starIndex} icon={faStar} className='' />
+                          <FontAwesomeIcon
+                            key={starIndex}
+                            icon={faStar}
+                            className=""
+                          />
                         )
                       )}
                     </div>
