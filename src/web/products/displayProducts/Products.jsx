@@ -65,7 +65,6 @@ export default function Products() {
               </div>
               <h2>{product.name}</h2>
               <h2>
-                {" "}
                 {Array.from({ length: product.avgRating }).map(
                   (_, starIndex) => (
                     <FontAwesomeIcon
