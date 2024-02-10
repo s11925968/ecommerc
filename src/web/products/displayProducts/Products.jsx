@@ -80,21 +80,23 @@ export default function Products() {
                 <div>
                   <p>{product.description}</p>
                   <p>Price: ${product.price}</p>
-                  {product.reviews.map((review, index) => (
-                    <div key={review._id}>
-                      <h1>Comment {index}</h1>
-                      <h2>{review.comment}</h2>
-                      {Array.from({ length: review.rating }).map(
-                        (_, starIndex) => (
-                          <FontAwesomeIcon
-                            key={starIndex}
-                            icon={faStar}
-                            className=""
-                          />
-                        )
-                      )}
-                    </div>
-                  ))}
+                  <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+                    {product.reviews.map((review, index) => (
+                      <div key={review._id}>
+                        <h1>Comment {index}</h1>
+                        <h2>{review.comment}</h2>
+                        {Array.from({ length: review.rating }).map(
+                          (_, starIndex) => (
+                            <FontAwesomeIcon
+                              key={starIndex}
+                              icon={faStar}
+                              className=""
+                            />
+                          )
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
